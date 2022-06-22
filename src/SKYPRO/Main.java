@@ -3,17 +3,8 @@ package SKYPRO;
 import java.util.Arrays;
 
 public class Main {
-
     int[] arr = generateRandomArray();
 
-    public static int[] generateRandomArray() {
-        java.util.Random random = new java.util.Random();
-        int[] arr = new int[30];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100_000) + 100_000;
-        }
-        return arr;
-    }
     public static void main(String[] args) {
 
         //Первым делом бухгалтеры попросили посчитать сумму всех выплат за месяц.
@@ -31,9 +22,11 @@ public class Main {
         //    – Код написан без ошибок.
         //
         //    – Соблюдены все условия задания.
+        int[] arr = generateRandomArray();
+
         int sum = 0;
-        for (int i = 0; i < generateRandomArray().length; i++) {
-            sum += generateRandomArray()[i];
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
         }
 
         System.out.println(sum);
@@ -52,42 +45,114 @@ public class Main {
         //    – При изменении данных массива код работает корректно и выводит верный результат.
         //
         //    – Результат программы выведен в консоль согласно условию задания.
-int spendingMax=-1;
-        for (int j=0;j< generateRandomArray().length;j++) {
-            if (generateRandomArray()[j] > spendingMax) {
-                spendingMax = generateRandomArray()[j];
-
+        int spendingMax = 0;
+        int spendingMin = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > spendingMax) {
+                spendingMax = arr[i];
             }
         }
-            System.out.println("максимальная трата"+" " + spendingMax);
-int spendingMin=-1;
-        for (int k = 0; k < generateRandomArray().length; k++) {
-            if (generateRandomArray()[k]>spendingMin) {
-                spendingMin=generateRandomArray()[k];
+        System.out.println("максимальная трата" + " " + spendingMax);
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < spendingMax) {
+                spendingMin = arr[i];
             }
         }
         System.out.println("минимальная трата" + " " + spendingMin);
-    int [] z={11,33,55,22,80,10};
+        int[] z = {11, 33, 55, 22, 80, 10};
         for (int i = 0; i < z.length; i++) {
-            if (z[i]-1==i) {
+            if (z[i] - 1 == i) {
                 System.out.println(z[i]);
                 break;
             }
-            System.out.print(z[i]+" ");
+            System.out.print(z[i] + " ");
         }
-        int max=0;
-        for (int i = 0; i < z.length; i++) {
-            if (z[i]>max) {
-                max=z[i];
+        System.out.println("");
+        //### Задание 3
+        //
+        //А теперь нам нужно понять, какую в среднем сумму наша компания тратила в течение данных 30 дней.
+        //
+        //Нужно написать программу, которая посчитает среднее значение трат за месяц (то есть сумму
+        // всех трат за месяц
+        // поделить на количество дней), и вывести в консоль результат в формате: «Средняя сумма трат
+        // за месяц составила … рублей».
+        //
+        //**Важно помнить:** подсчет среднего значения может иметь остаток (то есть быть не целым,
+        // а дробным числом).
+        //
+        //- Критерии оценки
+        //
+        //    – Средняя сумма трат найдена корректно.
+        //
+        //    – При изменении данных массива программа работает корректно и выдает верный результат.
+        //
+        //    – В коде учтено, что средняя сумма трат может быть как целым, так и дробным числом.
+        double midle = 0;
+        for (int i = 0; i < arr.length; i++) {
+            midle += arr[i] / 30;
+        }
+
+        System.out.println("Средняя сумма трат составила" + " "+ midle + " рублей");
+//Отойдем от подсчетов.
+//
+//В нашей бухгалтерской книге появился баг. Что-то пошло нет так, и Ф. И. О.
+// сотрудников начали отображаться в обратную сторону. Т. е. вместо «Иванов Иван Иванович»
+// мы имеем «чивонавИ навИ вонавИ».
+//
+//Данные с именами сотрудников хранятся в виде массива символов (char[]).
+//
+//Напишите код, который в случае такого бага будет выводить Ф. И. О. сотрудников в корректном
+// виде. В качестве данных для массива используйте:
+//
+//char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+//
+//В результате в консоль должно быть выведено "Ivanov Ivan".
+//
+//**Важно**: не используйте дополнительные массивы для решения этой задачи. Необходимо корректно
+// пройти по массиву циклом и распечатать его элементы в правильном порядке.
+        char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+        for (int i = 0; i < reverseFullName.length; i++) {
+            if (i==reverseFullName[i]) {
+                System.out.println(reverseFullName[i]);
+                break;
             }
+            System.out.print(reverseFullName[i]);
+
         }
-        System.out.println(" ");
-        System.out.println(max);
+        System.out.println("");
+        char N;
+        int n=reverseFullName.length;
+        for (int i = 0; i < n/2; i++) {
+            N=reverseFullName[n-i-1];
+            reverseFullName[n-i-1]=reverseFullName[i];
+            reverseFullName[i]=N;
+
+        }
+        for (int i = 0; i < reverseFullName.length; i++) {
+            System.out.print(reverseFullName[i]);
+        }
+
     }
 
 
 
+    public static int[] generateRandomArray() {
+
+
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+
+
 }
+
+
+
 
 
 
