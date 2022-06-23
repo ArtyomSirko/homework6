@@ -1,4 +1,4 @@
-package SKYPRO;
+package skypro;
 
 import java.util.Arrays;
 
