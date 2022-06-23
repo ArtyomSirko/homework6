@@ -3,13 +3,12 @@ package skypro;
 import java.util.Arrays;
 
 public class Main {
-    int[] arr = generateRandomArray();
 
     public static void main(String[] args) {
 
         //Задание 1
-
         int[] arr = generateRandomArray();
+
 
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -33,6 +32,7 @@ public class Main {
                 spendingMin = arr[i];
             }
         }
+        System.out.println("минимальная трата" + " " + spendingMin);
 
         //### Задание 3
 
